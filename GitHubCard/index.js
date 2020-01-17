@@ -2,9 +2,11 @@
            (replacing the placeholder with your Github name):
            https://api.github.com/users/<your name>
 */
-// AXIOS CALL TO MY GITHUB
+
+//GRAB CARD CONTAINER WITH QUERY
 const cardsContainer = document.querySelector(".cards");
 
+//FUNCITON FOR CREATING CARD COMPONENTS
 const createCard = data => {
   console.log("function data", data);
   //CREATE ELEMENTS
@@ -52,6 +54,9 @@ const createCard = data => {
   return entireCard;
 };
 
+//AXIOS CALL TO MY GITHUB
+  //CALL THE CREATE CARD FUNCTION ABOVE, PASS IN DATA FROM AXIOS CALL
+  //APPEND TO THE CARD CONTAINER
 axios
   .get("https://api.github.com/users/david-pok")
   .then(response => {
@@ -61,19 +66,6 @@ axios
   .catch(error => {
     console.log("CUSTOM ERROR MESSAGE GOES HERE", error);
   });
-
-// axios
-//   .get("https://dog.ceo/api/breed/mastiff/images/random/12")
-//   .then(response => {
-//     console.log(response);
-//     response.data.message.forEach(item => {
-//       const newDog = dogCard(item);
-//       entryPoint.append(newDog);
-//     });
-//   })
-//   .catch(error => {
-//     console.log("the data was not returned", error);
-//   });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -103,7 +95,9 @@ const followersArray = [
   "luishrd",
   "bigknell"
 ];
-//AXIOS CALL TO MY FOLLOWERS OR FOLLOWING
+
+//AXIOS CALL FOR EACH USER IN THE FOLLOWERS ARRAY ABOVE
+  //APPEND EACH USERS CREATED CARD TO CARD CONTAINER
 followersArray.forEach(data => {
   axios
     .get(`https://api.github.com/users/${data}`)
